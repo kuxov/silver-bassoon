@@ -1,0 +1,591 @@
+{
+	"info": {
+		"_postman_id": "dec4d30a-5833-460a-a0d9-83b9bf434ac7",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24858807",
+		"_collection_link": "https://orange-crater-445027.postman.co/workspace/eca84482-f53f-49e5-92e3-1208151441c4/collection/24858807-dec4d30a-5833-460a-a0d9-83b9bf434ac7?action=share&source=collection_link&creator=24858807"
+	},
+	"item": [
+		{
+			"name": "один счетчик +",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"counters\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"videos\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"videos\"\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"counters\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Counters property has correct value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.counters.videos).to.eql(43);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json;charset=utf-8\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json;charset=utf-8\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.ok.ru/fb.do?application_key={{application_key}}&counterTypes={{valid_counter}}&format=json&group_id={{vaild_group}}&method={{method}}&session_key={{session_key}}&sig={{sig}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ok",
+						"ru"
+					],
+					"path": [
+						"fb.do"
+					],
+					"query": [
+						{
+							"key": "application_key",
+							"value": "{{application_key}}"
+						},
+						{
+							"key": "counterTypes",
+							"value": "{{valid_counter}}"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "group_id",
+							"value": "{{vaild_group}}"
+						},
+						{
+							"key": "method",
+							"value": "{{method}}"
+						},
+						{
+							"key": "session_key",
+							"value": "{{session_key}}"
+						},
+						{
+							"key": "sig",
+							"value": "{{sig}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "два счетчика +",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"counters\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"videos\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"photos\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"videos\",\r",
+							"        \"photos\"\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"counters\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Counters property has correct value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.counters.videos).to.eql(43);\r",
+							"    pm.expect(jsonData.counters.photos).to.eql(931);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json;charset=utf-8\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json;charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.ok.ru/fb.do?application_key={{application_key}}&counterTypes={{valid_counters}}&format=json&group_id={{vaild_group}}&method={{method}}&session_key={{session_key}}&sig={{sig}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ok",
+						"ru"
+					],
+					"path": [
+						"fb.do"
+					],
+					"query": [
+						{
+							"key": "application_key",
+							"value": "{{application_key}}"
+						},
+						{
+							"key": "counterTypes",
+							"value": "{{valid_counters}}"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "group_id",
+							"value": "{{vaild_group}}"
+						},
+						{
+							"key": "method",
+							"value": "{{method}}"
+						},
+						{
+							"key": "session_key",
+							"value": "{{session_key}}"
+						},
+						{
+							"key": "sig",
+							"value": "{{sig}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "без счетчиков :(",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"error_code\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"error_msg\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"error_data\": {\r",
+							"      \"type\": \"null\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"error_code\",\r",
+							"    \"error_msg\",\r",
+							"    \"error_data\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body has correct values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.error_code).to.eql(100);\r",
+							"    pm.expect(jsonData.error_msg).to.eql(\"PARAM : Missing required parameter counterTypes\");\r",
+							"    pm.expect(jsonData.error_data).to.eql(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json;charset=utf-8\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json;charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.ok.ru/fb.do?application_key={{application_key}}&counterTypes=&format=json&group_id={{vaild_group}}&method={{method}}&session_key={{session_key}}&sig={{sig}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ok",
+						"ru"
+					],
+					"path": [
+						"fb.do"
+					],
+					"query": [
+						{
+							"key": "application_key",
+							"value": "{{application_key}}"
+						},
+						{
+							"key": "counterTypes",
+							"value": ""
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "group_id",
+							"value": "{{vaild_group}}"
+						},
+						{
+							"key": "method",
+							"value": "{{method}}"
+						},
+						{
+							"key": "session_key",
+							"value": "{{session_key}}"
+						},
+						{
+							"key": "sig",
+							"value": "{{sig}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "несуществующий счетчик :(",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"error_code\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"error_msg\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"error_data\": {\r",
+							"      \"type\": \"null\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"error_code\",\r",
+							"    \"error_msg\",\r",
+							"    \"error_data\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body has correct values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.error_code).to.eql(100);\r",
+							"    pm.expect(jsonData.error_msg).to.eql(\"PARAM : Invalid parameter counterTypes value  : [WRONG]\");\r",
+							"    pm.expect(jsonData.error_data).to.eql(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json;charset=utf-8\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json;charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.ok.ru/fb.do?application_key={{application_key}}&counterTypes={{invalid_counter}}&format=json&group_id={{vaild_group}}&method={{method}}&session_key={{session_key}}&sig={{sig}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ok",
+						"ru"
+					],
+					"path": [
+						"fb.do"
+					],
+					"query": [
+						{
+							"key": "application_key",
+							"value": "{{application_key}}"
+						},
+						{
+							"key": "counterTypes",
+							"value": "{{invalid_counter}}"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "group_id",
+							"value": "{{vaild_group}}"
+						},
+						{
+							"key": "method",
+							"value": "{{method}}"
+						},
+						{
+							"key": "session_key",
+							"value": "{{session_key}}"
+						},
+						{
+							"key": "sig",
+							"value": "{{sig}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "несуществующая группа :(",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"error_code\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"error_msg\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"error_data\": {\r",
+							"      \"type\": \"null\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"error_code\",\r",
+							"    \"error_msg\",\r",
+							"    \"error_data\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body has correct values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.error_code).to.eql(300);\r",
+							"    pm.expect(jsonData.error_msg).to.eql(\"NOT_FOUND : not.found.object\");\r",
+							"    pm.expect(jsonData.error_data).to.eql(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json;charset=utf-8\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json;charset=utf-8\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.ok.ru/fb.do?application_key={{application_key}}&counterTypes={{valid_counter}}&format=json&group_id={{invalid_group}}&method={{method}}&session_key={{session_key}}&sig={{sig}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ok",
+						"ru"
+					],
+					"path": [
+						"fb.do"
+					],
+					"query": [
+						{
+							"key": "application_key",
+							"value": "{{application_key}}"
+						},
+						{
+							"key": "counterTypes",
+							"value": "{{valid_counter}}"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "group_id",
+							"value": "{{invalid_group}}"
+						},
+						{
+							"key": "method",
+							"value": "{{method}}"
+						},
+						{
+							"key": "session_key",
+							"value": "{{session_key}}"
+						},
+						{
+							"key": "sig",
+							"value": "{{sig}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "method",
+			"value": "group.getCounters",
+			"type": "string"
+		},
+		{
+			"key": "session_key",
+			"value": "-n-",
+			"type": "string"
+		},
+		{
+			"key": "sig",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "application_key",
+			"value": ""
+		},
+		{
+			"key": "valid_counter",
+			"value": "VIDEOS"
+		},
+		{
+			"key": "invalid_counter",
+			"value": "WRONG"
+		},
+		{
+			"key": "valid_counters",
+			"value": "VIDEOS, PHOTOS"
+		},
+		{
+			"key": "vaild_group",
+			"value": "70000000106949"
+		},
+		{
+			"key": "invalid_group",
+			"value": "1364584"
+		}
+	]
+}
